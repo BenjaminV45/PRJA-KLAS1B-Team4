@@ -1,3 +1,8 @@
+//git test tests
+//test daniel
+// test leco 
+
+var menu;
 
 function setup() {
   createCanvas(800, 600);
@@ -6,35 +11,120 @@ function setup() {
 
 function draw() {
   background(34, 117, 188);
-  menu.menu()
+  
+  menu.render();
 }
 
 class Menu {
   
   constructor() {
     
-    
+    this.menuPage = 0;
+    this.mouseClicked = false;
   }
   
   menu(){
     
-    this.background(255)
-    this.button(75, this.page1);
-    this.button(75 + 105 + 75);
-    this.button(75 + 105 + 75 + 105 + 75);
-    this.button(75 + 105 + 75 + 105 + 75 + 105 + 75);
+    
     
   }
   
-  button(x) {
-    var y = 472.5
+  render() {
+    
+    this.background(255)
+  
+    this.processInput();
+    
+    switch(this.menuPage)
+    {
+      case 0:
+        {
+          textSize(32);
+          text('oof', 10, 30);
+          break;
+        }
+        case 1:
+        {
+          textSize(32);
+          text('oof2', 10, 30);
+          break;
+        }
+        case 2:
+        {
+          textSize(32);
+          text('oof3', 10, 30);
+          break;
+        }
+        case 3:
+        {
+          textSize(32);
+          text('oof4', 10, 30);
+          break;
+        }
+    }
+  }
+  
+  processInput() {
+
+    if(this.isButtonHovered(75))
+    {
+      this.button(75, 472.5, 50);
+      
+      if(this.mouseClicked)
+      {
+          this.menuPage = 0;
+      }
+    }
+    else
+      this.button(75);
+    
+    if(this.isButtonHovered(75 + 105 + 75))
+    {
+      this.button(75 + 105 + 75, 472.5, 50);
+      
+      if(this.mouseClicked)
+      {
+          this.menuPage = 1;
+      }
+    }
+    else
+      this.button(75 + 105 + 75);
+    
+    if(this.isButtonHovered(75 + 105 + 75 + 105 + 75))
+    {
+      this.button(75 + 105 + 75 + 105 + 75, 472.5, 50);
+      
+      if(this.mouseClicked)
+        this.menuPage = 2;
+    }
+    else
+      this.button(75 + 105 + 75 + 105 + 75);
+      
+    if(this.isButtonHovered(75 + 105 + 75 + 105 + 75 + 105 + 75))
+    {
+      this.button(75 + 105 + 75 + 105 + 75 + 105 + 75, 472.5, 50);
+      
+      if(this.mouseClicked)
+        this.menuPage = 3;
+    }
+    else
+      this.button(75 + 105 + 75 + 105 + 75 + 105 + 75);
+  
+  }
+  
+  isButtonHovered(x, y = 472.5) {
+    
+      return ((mouseX >= x && mouseX <= (x + 105)) && (mouseY >= y && mouseY <= (y + 105)));
+    
+  }
+  
+  button(x, y = 472.5, f = 0) {
     stroke(color(0, 170, 255));
     strokeWeight(6);
-    fill(0);
+    fill(f);
     rect(x, y, 105, 105);
     
   }
-  
   
   background(color){
     
@@ -44,4 +134,14 @@ class Menu {
     
   }
   
+}
+
+function mousePressed()
+{
+  menu.mouseClicked = true;
+  
+}
+
+function mouseReleased() {
+  menu.mouseClicked = false;
 }
