@@ -8,7 +8,7 @@ var assets = "./assets/"
 var images = assets + "images/"
 
 function preload(){
-
+  // Preloading minigames cards :  image(Minigame[4], 10, 30);
 	 Minigame = [
      loadImage(images + "/minigames/[1] Minigame.png"),
      loadImage(images + "/minigames/[2] Minigame.png"),
