@@ -3,6 +3,22 @@
 // test leco 
 
 var menu;
+var Minigame; 
+var assets = "./assets/"
+var images = assets + "images/"
+
+function preload(){
+
+	 Minigame = [
+     loadImage(images + "/minigames/[1] Minigame.png"),
+     loadImage(images + "/minigames/[2] Minigame.png"),
+     loadImage(images + "/minigames/[3] Minigame.png"),
+     loadImage(images + "/minigames/[4] Minigame.png"),
+     loadImage(images + "/minigames/[5] Minigame.png"),
+     loadImage(images + "/minigames/[6] Minigame.png")
+    ];
+
+}
 
 function setup() {
   createCanvas(800, 600);
@@ -53,6 +69,7 @@ class Menu {
         {
           textSize(32);
           text('oof3', 10, 30);
+          image(Minigame[4], 10, 30);
           break;
         }
         case 3:
