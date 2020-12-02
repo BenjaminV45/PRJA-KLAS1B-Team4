@@ -55,8 +55,8 @@ class Menu {
     {
       case 0:
         {
-          textSize(32);
-          text('oof', 10, 30);
+          textSize(40);
+          this.roundCounter();
           break;
         }
         case 1:
@@ -80,7 +80,15 @@ class Menu {
         }
     }
   }
-  
+  // case 0 functies
+  roundCounter() {
+    color(255);
+    noStroke();
+    textSize(50);
+    text("RONDE", 500, 100);
+    textSize(100);
+    text("1", 560,200);
+  }
   processInput() {
 
     if(this.isButtonHovered(75))
@@ -162,3 +170,4 @@ function mousePressed()
 function mouseReleased() {
   menu.mouseClicked = false;
 }
+
