@@ -65,7 +65,7 @@ class Menu {
           this.lijn();
           this.roundCounter();
           this.startKnop();
-         
+
           break;
         }
         case 1:
@@ -96,7 +96,13 @@ class Menu {
     textSize(50);
     text("RONDE", 500, 100);
     textSize(150);
-    text(counter, 550,250);
+    
+    if (counter < 10 ) {
+      text(counter, 550,250);
+    }
+    else{
+      text(counter, 500, 250);
+    }
   }
   startKnop(){
     image(Minigame[rk], 50, 50);
@@ -105,7 +111,7 @@ class Menu {
       startButton = 'Volgende ronde!'
       button = createButton(startButton);
       
-    button.position(400, 430);
+    button.position(540, 350);
     button.mousePressed(this.opteller);
 
     
