@@ -6,6 +6,9 @@ var menu;
 var Minigame; 
 var assets = "./assets/"
 var images = assets + "images/"
+var counter = 1;
+let button;
+
 
 function preload(){
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
@@ -22,7 +25,10 @@ function preload(){
 
 function setup() {
   createCanvas(800, 600);
+  rk = int(random(0,5));
   menu = new Menu();
+
+  
 }
 
 function draw() {
@@ -56,7 +62,10 @@ class Menu {
       case 0:
         {
           textSize(40);
+          this.lijn();
           this.roundCounter();
+          this.startKnop();
+         
           break;
         }
         case 1:
@@ -69,7 +78,7 @@ class Menu {
         {
           textSize(32);
           text('oof3', 10, 30);
-          image(Minigame[4], 10, 30);
+          // image(Minigame[4], 10, 30);
           break;
         }
         case 3:
@@ -86,9 +95,38 @@ class Menu {
     noStroke();
     textSize(50);
     text("RONDE", 500, 100);
-    textSize(100);
-    text("1", 560,200);
+    textSize(150);
+    text(counter, 550,250);
   }
+  startKnop(){
+    image(Minigame[rk], 50, 50);
+    var startButton;
+
+      startButton = 'Volgende ronde!'
+      button = createButton(startButton);
+      
+    button.position(400, 430);
+    button.mousePressed(this.opteller);
+
+    
+  }
+  opteller(){
+    if (mouseIsPressed) {
+      counter++;
+      rk = int(random(0,5));
+      
+      console.log(rk)
+      // image(Minigame[rk], 10, 30);
+
+    }
+      
+  }
+  lijn() {
+    stroke(color(0))
+    strokeWeight(4)
+    line(398, 50, 398, 400)
+  }
+  
   processInput() {
 
     if(this.isButtonHovered(75))
