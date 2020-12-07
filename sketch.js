@@ -12,14 +12,14 @@ let button;
 
 function preload(){
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
-   // Minigame = [
-   // loadImage(images + "/minigames/[1] Minigame.png"),
-   // loadImage(images + "/minigames/[2] Minigame.png"),
-   // loadImage(images + "/minigames/[3] Minigame.png"),
-   // loadImage(images + "/minigames/[4] Minigame.png"),
-   // loadImage(images + "/minigames/[5] Minigame.png"),
-   // loadImage(images + "/minigames/[6] Minigame.png")
-   // ];
+   Minigame = [
+   loadImage(images + "/minigames/[1] Minigame.png"),
+   loadImage(images + "/minigames/[2] Minigame.png"),
+   loadImage(images + "/minigames/[3] Minigame.png"),
+   loadImage(images + "/minigames/[4] Minigame.png"),
+   loadImage(images + "/minigames/[5] Minigame.png"),
+   loadImage(images + "/minigames/[6] Minigame.png")
+   ];
 
 }
 
@@ -66,6 +66,7 @@ class Menu {
           textSize(40);
           this.lijn();
           this.roundCounter();
+          image(Minigame[rk], 10, 30);
           
           if(!bcreated)
             this.startKnop();
@@ -86,7 +87,7 @@ class Menu {
         {
           textSize(32);
           text('oof3', 10, 30);
-          // image(Minigame[4], 10, 30);
+          image(Minigame[4], 10, 30);
           button.remove();
           bcreated = false;
           break;
@@ -117,7 +118,7 @@ class Menu {
     }
   }
   startKnop(){
-    //image(Minigame[rk], 50, 50);
+    
     var startButton;
 
       startButton = 'Volgende ronde!'
@@ -136,7 +137,7 @@ class Menu {
       rk = int(random(0,5));
       
       console.log(rk)
-      // image(Minigame[rk], 10, 30);
+      image(Minigame[rk], 10, 30);
 
     }
       
