@@ -12,14 +12,14 @@ let button;
 
 function preload(){
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
-	 Minigame = [
-     loadImage(images + "/minigames/[1] Minigame.png"),
-     loadImage(images + "/minigames/[2] Minigame.png"),
-     loadImage(images + "/minigames/[3] Minigame.png"),
-     loadImage(images + "/minigames/[4] Minigame.png"),
-     loadImage(images + "/minigames/[5] Minigame.png"),
-     loadImage(images + "/minigames/[6] Minigame.png")
-    ];
+   // Minigame = [
+   // loadImage(images + "/minigames/[1] Minigame.png"),
+   // loadImage(images + "/minigames/[2] Minigame.png"),
+   // loadImage(images + "/minigames/[3] Minigame.png"),
+   // loadImage(images + "/minigames/[4] Minigame.png"),
+   // loadImage(images + "/minigames/[5] Minigame.png"),
+   // loadImage(images + "/minigames/[6] Minigame.png")
+   // ];
 
 }
 
@@ -36,6 +36,8 @@ function draw() {
   
   menu.render();
 }
+
+var bcreated = false;
 
 class Menu {
   
@@ -64,7 +66,11 @@ class Menu {
           textSize(40);
           this.lijn();
           this.roundCounter();
-          this.startKnop();
+          
+          if(!bcreated)
+            this.startKnop();
+          
+          
 
           break;
         }
@@ -72,6 +78,8 @@ class Menu {
         {
           textSize(32);
           text('oof2', 10, 30);
+          button.hide();
+          bcreated = false;
           break;
         }
         case 2:
@@ -79,12 +87,16 @@ class Menu {
           textSize(32);
           text('oof3', 10, 30);
           // image(Minigame[4], 10, 30);
+          button.remove();
+          bcreated = false;
           break;
         }
         case 3:
         {
           textSize(32);
           text('oof4', 10, 30);
+          button.remove();
+          bcreated = false;
           break;
         }
     }
@@ -105,7 +117,7 @@ class Menu {
     }
   }
   startKnop(){
-    image(Minigame[rk], 50, 50);
+    //image(Minigame[rk], 50, 50);
     var startButton;
 
       startButton = 'Volgende ronde!'
@@ -113,6 +125,8 @@ class Menu {
       
     button.position(540, 350);
     button.mousePressed(this.opteller);
+    
+    bcreated = true;
 
     
   }
