@@ -66,7 +66,7 @@ class Menu {
           textSize(40);
           this.lijn();
           this.roundCounter();
-          image(Minigame[rk], 10, 30);
+          image(Minigame[rk], 77, 63);
           
           if(!bcreated)
             this.startKnop();
@@ -104,28 +104,39 @@ class Menu {
   }
   // case 0 functies
   roundCounter() {
+    
     color(255);
     noStroke();
     textSize(50);
-    text("RONDE", 500, 100);
+    text("RONDE", 510, 100);
     textSize(150);
     
     if (counter < 10 ) {
-      text(counter, 550,250);
+      text(counter, 560,250);
     }
     else{
-      text(counter, 500, 250);
+      text(counter, 515, 250);
     }
   }
   startKnop(){
     
     var startButton;
-
+    let col = color('#03254c')
+    let butcol = color('#0')
       startButton = 'Volgende ronde!'
       button = createButton(startButton);
-      
-    button.position(540, 350);
-    button.mousePressed(this.opteller);
+      button.style('width', '220px')
+      button.style('background-color', col);
+      button.style('color', butcol);
+      button.style('font-size', '25px',);
+      button.style('border-radius', '10px')
+      button.style('border-color', '#000')
+      button.style('border-width', '4px')
+      button.style('padding', '5px');
+      button.style('position', 'absolute');
+      button.style('top', '320px');
+      button.style('left', '490px');
+      button.mousePressed(this.opteller);
     
     bcreated = true;
 
@@ -137,7 +148,7 @@ class Menu {
       rk = int(random(0,5));
       
       console.log(rk)
-      image(Minigame[rk], 10, 30);
+      image(Minigame[rk], 77, 63);
 
     }
       
