@@ -21,6 +21,19 @@ function preload(){
    loadImage(images + "/minigames/[6] Minigame.png")
    ];
 
+   Gooiworp = [
+    loadImage(images + "/gooiworpen/[1] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[2] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[3] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[4] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[5] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[6] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[7] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[8] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[9] Gooiworp.png"),
+    loadImage(images + "/gooiworpen/[10] Gooiworp.png"),
+   ];
+
 }
 
 function setup() {
@@ -66,7 +79,7 @@ class Menu {
           textSize(40);
           this.lijn();
           this.roundCounter();
-          image(Minigame[rk], 77, 63);
+          image(Gooiworp[rk], 77, 63);
           
           if(!bcreated)
             this.startKnop();
@@ -148,7 +161,7 @@ class Menu {
       rk = int(random(0,5));
       
       console.log(rk)
-      image(Minigame[rk], 77, 63);
+      // image(Gooiworp[rk], 77, 63);
 
     }
       
