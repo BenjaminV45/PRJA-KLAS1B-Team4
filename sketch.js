@@ -9,29 +9,28 @@ var images = assets + "images/"
 var counter = 1;
 let button;
 
-
 function preload(){
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
    Minigame = [
-   loadImage(images + "/minigames/[1] Minigame.png"),
-   loadImage(images + "/minigames/[2] Minigame.png"),
-   loadImage(images + "/minigames/[3] Minigame.png"),
-   loadImage(images + "/minigames/[4] Minigame.png"),
-   loadImage(images + "/minigames/[5] Minigame.png"),
-   loadImage(images + "/minigames/[6] Minigame.png")
+   loadImage(images + "minigames/[1] Minigame.png"),
+   loadImage(images + "minigames/[2] Minigame.png"),
+   loadImage(images + "minigames/[3] Minigame.png"),
+   loadImage(images + "minigames/[4] Minigame.png"),
+   loadImage(images + "minigames/[5] Minigame.png"),
+   loadImage(images + "minigames/[6] Minigame.png")
    ];
 
    Gooiworp = [
-    loadImage(images + "/gooiworpen/[1] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[2] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[3] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[4] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[5] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[6] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[7] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[8] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[9] Gooiworp.png"),
-    loadImage(images + "/gooiworpen/[10] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[1] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[2] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[3] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[4] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[5] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[6] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[7] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[8] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[9] Gooiworp.png"),
+    loadImage(images + "gooiworpen/[10] Gooiworp.png"),
    ];
 
 }
@@ -56,7 +55,7 @@ class Menu {
   
   constructor() {
     
-    this.menuPage = 0;
+    this.menuPage = -1;
     this.mouseClicked = false;
   }
   
@@ -65,7 +64,7 @@ class Menu {
     
     
   }
-  
+
   render() {
     
     this.background(255)
@@ -74,6 +73,22 @@ class Menu {
     
     switch(this.menuPage)
     {
+      case -1: //loading screen
+      {
+          textSize(64);
+          text('Press left click to start.', 70, 235);
+
+          if(this.mouseClicked)
+            this.menuPage = 0;
+
+          if(button)
+          {
+            button.hide();
+            bcreated = false;
+          }
+
+          break;
+      }
       case 0:
         {
           textSize(40);
@@ -83,8 +98,6 @@ class Menu {
           
           if(!bcreated)
             this.startKnop();
-          
-          
 
           break;
         }
@@ -115,6 +128,7 @@ class Menu {
         }
     }
   }
+
   // case 0 functies
   roundCounter() {
     
@@ -173,6 +187,9 @@ class Menu {
   }
   
   processInput() {
+
+    if(this.menuPage == -1)
+      return;
 
     if(this.isButtonHovered(75))
     {
