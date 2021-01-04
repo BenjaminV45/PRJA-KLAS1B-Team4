@@ -16,7 +16,13 @@ var last_page = -1;
 function preload(){
 
   Logo = loadImage(images + "/logo.png");
-
+  Handleiding = [
+    loadImage(images + "handleiding/handleiding1.png"),
+    loadImage(images + "handleiding/handleiding2.png"),
+    loadImage(images + "handleiding/handleiding3.png"),
+    loadImage(images + "handleiding/handleiding4.png"),
+    loadImage(images + "handleiding/handleiding5.png")
+  ]
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
    Minigame = [
    loadImage(images + "minigames/[1] Minigame.png"),
@@ -78,7 +84,7 @@ class Menu {
   
     this.processInput();
   
-    console.log(history[history.length - 2]);  
+    // console.log(history[history.length - 2]);  
 
     if(this.menuPage != 2)
     {
@@ -160,38 +166,112 @@ class Menu {
   loadObjects() {
     
     container = createDiv('');
-    var rightSide = createDiv('');
-    var leftSide = createDiv('');
-
-
     container.style('position', 'absolute')
     container.style('width', '800px')
     container.style('height', '450px')
     container.style('color', 'white'); 
     container.style('top', '0px')
     container.style('left', '0px')
-    container.style('background-color', 'red')
-    
+
+
+    var rightSide = createDiv('');
     rightSide.parent(container); 
     rightSide.style('font-size', '24px'); 
     rightSide.style('position', 'absolute')
     rightSide.style('width', '400px')
     rightSide.style('height', '450px')
     rightSide.style('color', 'white'); 
-    rightSide.style('background-color', 'red')
     rightSide.style('top', '0px')
     rightSide.style('left', '400px')
 
+    var hBtn = createButton('');
+    hBtn.parent(rightSide); 
+    hBtn.style('width', '275px');
+    hBtn.style('position', 'absolute')
+    hBtn.style('left', '62.5px');
+    hBtn.style('top', '30px');
+    hBtn.style('height', '390.47px')
+    hBtn.style('background-image', 'url("./assets/images/handleiding/handleiding1.png")')
+    hBtn.style('background-size', '100%')
+    hBtn.style('border', 'none')
+    // hBtn.mousePressed(this.goHandleiding);
+
+    var leftSide = createDiv('');
     leftSide.parent(container); 
     leftSide.style('font-size', '24px'); 
     leftSide.style('position', 'absolute')
     leftSide.style('width', '400px')
     leftSide.style('height', '450px')
     leftSide.style('color', 'white'); 
-    container.style('background-color', 'blue')
     leftSide.style('top', '0px')
     leftSide.style('left', '0px')
+
+    var block = createDiv('');
+    this.blockStyle(block,leftSide,30)
+    var icon = createDiv('');
+    this.iconStyle(icon,block, '')
+    var text = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    this.textStyle(text,block)
+
+    var block1 = createDiv('');
+    this.blockStyle(block1,leftSide,133)
+    var icon1 = createDiv('');
+    this.iconStyle(icon1,block1, '1')
+    var text1 = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    this.textStyle(text1,block1)
+
+    var block2 = createDiv('');
+    this.blockStyle(block2,leftSide,236)
+    var icon2 = createDiv('');
+    this.iconStyle(icon2,block2, '2')
+    var text2 = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    this.textStyle(text2,block2)
+
+    var block3 = createDiv('');
+    this.blockStyle(block3,leftSide,339)
+    var icon3 = createDiv('');
+    this.iconStyle(icon3,block3, '3')
+    var text3 = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    this.textStyle(text3,block3)
+
+    
     ccreated = true
+  }
+
+  blockStyle(b,p,top){
+    b.parent(p); 
+    b.style('width', '345px')
+    b.style('height', '75px')
+    b.style('position', 'absolute')
+    b.style('left', '60px');
+    b.style('top', ''+top+'px');
+    // b.style('background', 'white'); 
+  }
+  textStyle(t,p){
+    t.parent(p); 
+    t.style('font-size', '11.5px'); 
+    t.style('position', 'absolute')
+    t.style('width', '250px')
+    t.style('height', '75px')
+    t.style('color', 'black'); 
+    t.style('top', '0px')
+    t.style('right', '0px')
+  }
+  iconStyle(i, p, n){
+    i.parent(p); 
+    i.style('width', '63px')
+    i.style('height', '63px')
+    i.style('position', 'absolute')
+    i.style('left', '0px');
+    i.style('top', '0px');
+    i.style('background', 'black'); 
+    i.style('border-color', '#27aae1')
+    i.style('border-width', '6px')
+    i.style('border-style', 'solid')
+    i.style('background-image', 'url("./assets/images/icons/icon'+n+'.svg")')
+    i.style('background-size', '80%')
+    i.style('background-repeat', 'no-repeat')
+    i.style('background-position', 'center')
   }
   removeContainer() {
     if(container)
@@ -200,6 +280,7 @@ class Menu {
       ccreated = false;
     }
   }
+  
   // case 0 functies
   roundCounter() {
     
@@ -234,12 +315,16 @@ class Menu {
       button.style('position', 'absolute');
       button.style('top', '320px');
       button.style('left', '490px');
-      button.mousePressed(this.opteller);
     
     bcreated = true;
 
     
   }
+
+  goHandleiding() {
+      this.menuPage = 0;
+  }
+  
   opteller(){
     if (mouseIsPressed) {
       counter++;
