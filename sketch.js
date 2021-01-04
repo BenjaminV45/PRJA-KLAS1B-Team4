@@ -4,12 +4,16 @@
 
 var menu;
 var Minigame; 
+var Logo;
 var assets = "./assets/"
 var images = assets + "images/"
 var counter = 1;
 let button;
 
 function preload(){
+
+  Logo = loadImage(images + "/logo.png");
+
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
    Minigame = [
    loadImage(images + "minigames/[1] Minigame.png"),
@@ -76,7 +80,8 @@ class Menu {
       case -1: //loading screen
       {
           textSize(64);
-          text('Press left click to start.', 70, 235);
+          image(Logo, 240, 10, 300, 300);
+          text('Press left click to start.', 70, 390);
 
           if(this.mouseClicked)
             this.menuPage = 0;
