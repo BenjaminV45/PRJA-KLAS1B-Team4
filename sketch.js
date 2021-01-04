@@ -9,6 +9,7 @@ var assets = "./assets/"
 var images = assets + "images/"
 var counter = 1;
 let button;
+let container;
 
 function preload(){
 
@@ -54,7 +55,7 @@ function draw() {
 }
 
 var bcreated = false;
-
+var ccreated = false;
 class Menu {
   
   constructor() {
@@ -96,6 +97,7 @@ class Menu {
       }
       case 0:
         {
+          this.removeContainer();
           textSize(40);
           this.lijn();
           this.roundCounter();
@@ -108,6 +110,7 @@ class Menu {
         }
         case 1:
         {
+          this.removeContainer();
           textSize(32);
           text('oof2', 10, 30);
           button.hide();
@@ -116,6 +119,7 @@ class Menu {
         }
         case 2:
         {
+          this.removeContainer();
           textSize(32);
           text('oof3', 10, 30);
           image(Minigame[4], 10, 30);
@@ -125,15 +129,62 @@ class Menu {
         }
         case 3:
         {
-          textSize(32);
-          text('oof4', 10, 30);
           button.remove();
           bcreated = false;
+
+          if(!ccreated){
+            this.loadObjects();
+          }
+          
           break;
         }
     }
   }
 
+  // case 0 functies
+  loadObjects() {
+    
+    container = createDiv('');
+    var rightSide = createDiv('');
+    var leftSide = createDiv('');
+
+
+    container.style('position', 'absolute')
+    container.style('width', '800px')
+    container.style('height', '450px')
+    container.style('color', 'white'); 
+    container.style('top', '0px')
+    container.style('left', '0px')
+    container.style('background-color', 'red')
+    
+    rightSide.parent(container); 
+    rightSide.style('font-size', '24px'); 
+    rightSide.style('position', 'absolute')
+    rightSide.style('width', '400px')
+    rightSide.style('height', '450px')
+    rightSide.style('color', 'white'); 
+    rightSide.style('background-color', 'red')
+    rightSide.style('top', '0px')
+    rightSide.style('left', '400px')
+
+    leftSide.parent(container); 
+    leftSide.style('font-size', '24px'); 
+    leftSide.style('position', 'absolute')
+    leftSide.style('width', '400px')
+    leftSide.style('height', '450px')
+    leftSide.style('color', 'white'); 
+    container.style('background-color', 'blue')
+    leftSide.style('top', '0px')
+    leftSide.style('left', '0px')
+    ccreated = true
+  }
+  removeContainer() {
+    if(container)
+    {
+      container.remove();
+      ccreated = false;
+    }
+  }
   // case 0 functies
   roundCounter() {
     
