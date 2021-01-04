@@ -10,6 +10,8 @@ var images = assets + "images/"
 var counter = 1;
 let button;
 let container;
+let history = [0];
+var last_page = -1;
 
 function preload(){
 
@@ -75,7 +77,17 @@ class Menu {
     this.background(255)
   
     this.processInput();
-    
+  
+    console.log(history[history.length - 2]);  
+
+    if(this.menuPage != 2)
+    {
+      if(last_page != this.menuPage)
+        append(history, this.menuPage)
+
+      last_page = this.menuPage;
+    }
+
     switch(this.menuPage)
     {
       case -1: //loading screen
@@ -110,6 +122,7 @@ class Menu {
         }
         case 1:
         {
+
           this.removeContainer();
           textSize(32);
           text('oof2', 10, 30);
@@ -118,13 +131,15 @@ class Menu {
           break;
         }
         case 2:
-        {
-          this.removeContainer();
-          textSize(32);
-          text('oof3', 10, 30);
-          image(Minigame[4], 10, 30);
-          button.remove();
-          bcreated = false;
+        {        
+          this.menuPage = history[history.length - 2];
+
+          // this.removeContainer();
+          // textSize(32);
+          // text('oof3', 10, 30);
+          // image(Minigame[4], 10, 30);
+          // button.remove();
+          // bcreated = false;
           break;
         }
         case 3:
