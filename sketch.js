@@ -315,7 +315,7 @@ class Menu {
       button.style('position', 'absolute');
       button.style('top', '320px');
       button.style('left', '490px');
-    
+      button.mousePressed(this.opteller);
     bcreated = true;
 
     
