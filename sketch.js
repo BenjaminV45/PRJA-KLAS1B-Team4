@@ -24,6 +24,13 @@ function preload(){
     loadImage(images + "handleiding/handleiding4.png"),
     loadImage(images + "handleiding/handleiding5.png")
   ]
+
+  icon = [
+    loadImage(images + "icons/1.png"),
+    loadImage(images + "icons/2.png"),
+    loadImage(images + "icons/3.png"),
+    loadImage(images + "icons/4.png")
+  ]
   // Preloading minigames cards :  image(Minigame[4], 10, 30);
    Minigame = [
    loadImage(images + "minigames/[1] Minigame.png"),
@@ -336,10 +343,6 @@ class Menu {
 
     
   }
-
-  goHandleiding() {
-      this.menuPage = 0;
-  }
   
   opteller(){
     if (mouseIsPressed) {
@@ -359,10 +362,8 @@ class Menu {
   }
   
   processInput() {
-
     if(this.menuPage == -1)
       return;
-
     if(this.isButtonHovered(75))
     {
       this.button(75, 472.5, 50);
@@ -406,7 +407,11 @@ class Menu {
     }
     else
       this.button(75 + 105 + 75 + 105 + 75 + 105 + 75);
-  
+
+    image(icon[0], 85, 483, 85, 85);
+    image(icon[1], 265, 483, 85, 85);
+    image(icon[2], 445, 483, 85, 85);
+    image(icon[3], 625, 483, 85, 85);
   }
   
   isButtonHovered(x, y = 472.5) {
@@ -420,6 +425,7 @@ class Menu {
     strokeWeight(6);
     fill(f);
     rect(x, y, 105, 105);
+
     
   }
   
