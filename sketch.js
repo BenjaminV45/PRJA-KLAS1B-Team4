@@ -12,6 +12,7 @@ let button;
 let container;
 let history = [0];
 var last_page = -1;
+let Himage = 1
 
 function preload(){
 
@@ -132,7 +133,7 @@ class Menu {
           this.removeContainer();
           textSize(32);
           text('oof2', 10, 30);
-          button.hide();
+          button.remove();
           bcreated = false;
           break;
         }
@@ -150,6 +151,11 @@ class Menu {
         }
         case 3:
         {
+          if (mouseIsPressed) {
+            if((mouseX > 462.5 && mouseX < 737.5) && (mouseY > 30 && mouseY < 420) ){
+              this.menuPage = 4
+            }
+          }
           button.remove();
           bcreated = false;
 
@@ -159,12 +165,19 @@ class Menu {
           
           break;
         }
+        case 4:
+          {
+            this.removeContainer();
+            image(Handleiding[Himage], 127.035, 29.765, 545.9344, 390.47);
+            button.remove();
+            bcreated = false;
+            break;
+          }
     }
   }
 
   // case 0 functies
   loadObjects() {
-    
     container = createDiv('');
     container.style('position', 'absolute')
     container.style('width', '800px')
@@ -184,7 +197,7 @@ class Menu {
     rightSide.style('top', '0px')
     rightSide.style('left', '400px')
 
-    var hBtn = createButton('');
+    var hBtn = createDiv('');
     hBtn.parent(rightSide); 
     hBtn.style('width', '275px');
     hBtn.style('position', 'absolute')
@@ -247,6 +260,7 @@ class Menu {
     b.style('top', ''+top+'px');
     // b.style('background', 'white'); 
   }
+
   textStyle(t,p){
     t.parent(p); 
     t.style('font-size', '11.5px'); 
@@ -257,6 +271,7 @@ class Menu {
     t.style('top', '0px')
     t.style('right', '0px')
   }
+
   iconStyle(i, p, n){
     i.parent(p); 
     i.style('width', '63px')
@@ -273,6 +288,7 @@ class Menu {
     i.style('background-repeat', 'no-repeat')
     i.style('background-position', 'center')
   }
+
   removeContainer() {
     if(container)
     {
@@ -427,3 +443,16 @@ function mouseReleased() {
   menu.mouseClicked = false;
 }
 
+
+function keyPressed() {
+  if (keyIsDown(LEFT_ARROW)){
+    if(Himage > 1){
+      Himage--
+    }
+  }
+  if (keyIsDown(RIGHT_ARROW)){
+    if(Himage != 4){
+      Himage++
+      }
+  }
+}
