@@ -14,6 +14,24 @@ let history = [0];
 var last_page = -1;
 let Himage = 1
 
+var rad;
+let theta;
+let current = 0;
+let sectionSize;
+let size = 125;
+let colors = [];
+let spinning = false;
+let spinButton;
+let backC, prevC;
+let total = 4;
+let selectedIndex = 0;
+let spinningSound;
+var counter = 1;
+
+const mouse = () => createVector(mouseX - width / 2, mouseY - height / 2);
+const pmouse = () => createVector(pmouseX - width / 2, pmouseY - height / 2);
+
+
 function preload(){
 
   Logo = loadImage(images + "/logo.png");
@@ -53,7 +71,7 @@ function preload(){
     loadImage(images + "gooiworpen/[9] Gooiworp.png"),
     loadImage(images + "gooiworpen/[10] Gooiworp.png"),
    ];
-
+   spinningSound = loadSound('assets/sounds/spinningWheel.wav');
 }
 
 function setup() {
@@ -70,8 +88,154 @@ function draw() {
   menu.render();
 }
 
+class Rad {
+  constructor() {
+    size = (height * .8) / 4;
+    sectionSize = (TWO_PI / total);
+
+    this.loadColors();
+    backC = color(51);
+    this.drawRad();
+  }
+
+  drawButton() {
+    spinButton = createButton("START!");
+    spinButton.mousePressed(() => {
+      if (!spinning) {
+        current = random(TWO_PI);
+        theta = 0;
+        rk = int(random(1));
+
+        let force = random(0.4, 0.5);
+          
+        if (random(1) > 0.5)
+          force *= -1;
+          
+        theta += force;
+        counter++;
+        rk = int(random(0,5));
+        spinningSound.play();
+      }
+      spinning = true;
+    });
+    spinButton.addClass("button");
+    spinButton.position(520, 158);
+  }
+
+  drawRad () {
+    if (backC); {
+      image(Minigame[rk], 77, 63);
+    }
+    
+    translate(600, 235);
+
+    current += theta;
+
+    theta *= .99;
+    
+    if (theta < 0.001 && theta > -0.001) {
+      theta = 0; 
+      spinning = false;
+      spinningSound.stop();
+    }
+
+    this.drawSpinner();
+    this.drawCircle();
+    this.drawArcs();
+  } 
+
+  drawCircle() {
+    circle(0, 0, 322, 322);
+    strokeWeight(1);
+    stroke(20);
+    rotate(current);
+  }
+
+  drawSpinner() {
+    fill(255);
+    push();
+    strokeWeight(1);
+    stroke(20);
+    translate(0, -204);
+    rotate(2.35);
+    triangle(15, 15, 30, -30, -15, -15);
+    pop();
+  }
+
+  drawArcs() {
+    for (let i = 0; i < total; i++) {
+      push();
+      let t = ((i) / total) * TWO_PI;
+      let prev = t - sectionSize;
+      rotate(t);
+      let c = colors[i];
+      c.setAlpha(255);
+      let cot = current + (120 * TWO_PI);
+      let me = ((cot) % TWO_PI) - sectionSize;
+      let sw = 4;
+      let astroke = 1;
+      let strokeCol = 200;
+
+      if (me > prev && me < t) {
+        prevC = c;
+        selectedIndex = i;
+        c.setAlpha(190);
+        sw = 6;
+        astroke = 4;
+        strokeCol = color(0, 0, 0, 0);
+      }
+      push();
+      rotate(-QUARTER_PI);
+      let n = 0;
+
+      rotate(sectionSize / 2);
+      translate(size * 1.6 + n, size * 1.6 + n);
+      rotate(-QUARTER_PI);
+      rotate(PI);
+      rotate(HALF_PI);
+      stroke(0);
+      strokeWeight(sw);
+      fill(255);
+      pop();
+      
+      fill(c);
+      stroke(strokeCol);
+      strokeWeight(astroke);
+      arc(0, 0, 322, 322, 0, 322, PIE);
+      pop();
+    }
+  }
+
+  loadColors() {
+    colors = [];
+    var rainbowColors = [
+      createVector(0, 0, 0).set(color('red').levels),
+      createVector(0, 0, 0).set(color('green').levels),
+      createVector(0, 0, 0).set(color('yellow').levels),
+      createVector(0, 0, 0).set(color('blue').levels)
+    ];
+    
+    for (var i = 0; i < total; i++) {
+      var colorPosition = i / total;
+      var scaledColorPosition = colorPosition * (rainbowColors.length);
+
+      var colorIndex = floor(scaledColorPosition);
+      var colorPercentage = scaledColorPosition - colorIndex;
+
+      var nameColor = p5.Vector.lerp(
+        rainbowColors[colorIndex],
+        rainbowColors[colorIndex + 1],
+        colorPercentage
+      );
+      colors.push(color(nameColor.x, nameColor.y, nameColor.z));
+    }
+  }
+}
+
 var bcreated = false;
 var ccreated = false;
+var radcreated = false;
+
 class Menu {
   
   constructor() {
@@ -119,27 +283,34 @@ class Menu {
         {
           this.removeContainer();
           textSize(40);
+          this.removeRad();
           this.lijn();
           this.roundCounter();
           image(Gooiworp[rk], 77, 63);
           
           if(!bcreated)
             this.startKnop();
-
-          break;
+            break;
         }
         case 1:
         {
           this.removeCounter();
           this.removeContainer();
           textSize(32);
+          this.lijn();
           text('oof2', 10, 30);
+           rad = new Rad();
+          if (!radcreated) {
+            rad.drawButton();
+            spinButton.show();
+            radcreated = true;
+          }
           break;
         }
         case 2:
         {        
           this.menuPage = history[history.length - 2];
-
+          this.removeRad();
           // this.removeContainer();
           // textSize(32);
           // text('oof3', 10, 30);
@@ -151,6 +322,7 @@ class Menu {
         case 3:
         {
           this.removeCounter();
+          this.removeRad();
           if (mouseIsPressed) {
             if((mouseX > 462.5 && mouseX < 737.5) && (mouseY > 30 && mouseY < 420) ){
               this.menuPage = 4
@@ -167,6 +339,7 @@ class Menu {
           {
             this.removeCounter();
             this.removeContainer();
+            this.removeRad();
             image(Handleiding[Himage], 127.035, 29.765, 545.9344, 390.47);
             bcreated = false;
             break;
