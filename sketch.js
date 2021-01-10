@@ -467,6 +467,12 @@ class Menu {
       ccreated = false;
     }
   }
+  removeRad() {
+    if(spinButton) {
+      spinButton.remove();
+      radcreated = false;
+    }
+  }
   removeCounter() {
     if(button)
     {
