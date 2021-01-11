@@ -94,11 +94,12 @@ class Rad {
     sectionSize = (TWO_PI / total);
 
     this.loadColors();
-    backC = color(51);
+    backC = color('#231f20');
     this.drawRad();
   }
 
   drawButton() {
+
     spinButton = createButton("START!");
     spinButton.mousePressed(() => {
       if (!spinning) {
@@ -120,6 +121,13 @@ class Rad {
     });
     spinButton.addClass("button");
     spinButton.position(520, 158);
+    var arrowDown = createDiv('');
+    arrowDown.parent(spinButton); 
+    arrowDown.addClass("triangle-down");
+
+    var arrowDown2 = createDiv('');
+    arrowDown2.parent(arrowDown); 
+    arrowDown2.addClass("triangle-down2");
   }
 
   drawRad () {
@@ -145,22 +153,22 @@ class Rad {
   } 
 
   drawCircle() {
-    circle(0, 0, 322, 322);
-    strokeWeight(3);
+    strokeWeight(12);
     stroke('#231f20');
+    circle(0, 0, 318, 318);
     rotate(current);
   }
 
   drawSpinner() {
-    fill('#231f20');
-    push();
-    strokeWeight(3);
-    stroke('#231f20');
-    translate(0, -204);
-    rotate(2.35);
-    fill(255)
-    triangle(15, 15, 30, -30, -15, -15);
-    pop();
+    // fill('#231f20');
+    // push();
+    // // strokeWeight(3);
+    // // stroke('#231f20');
+    // // translate(0, -204);
+    // // rotate(2.35);
+    // // fill(255)
+    // // triangle(15, 15, 30, -30, -15, -15);
+    // pop();
   }
 
   drawArcs() {
@@ -175,14 +183,14 @@ class Rad {
       let me = ((cot) % TWO_PI) - sectionSize;
       let sw = 4;
       let astroke = 1;
-      let strokeCol = 200;
+      let strokeCol = 0;
 
       if (me > prev && me < t) {
         prevC = c;
         selectedIndex = i;
         c.setAlpha(190);
         sw = 6;
-        astroke = 4;
+        astroke = 0;
         strokeCol = color('#231f20');
       }
       push();
@@ -194,15 +202,16 @@ class Rad {
       rotate(-QUARTER_PI);
       rotate(PI);
       rotate(HALF_PI);
-      stroke(0);
-      strokeWeight(sw);
-      fill('#231f20');
+      // stroke('#231f20');
+      // strokeWeight(sw);
+      // fill('#231f20');
       pop();
       
       fill(c);
-      stroke(strokeCol);
-      strokeWeight(astroke);
-      arc(0, 0, 322, 322, 0, 322, PIE);
+      stroke('#231f20');
+      strokeWeight(2);
+      stroke('#231f20')
+      arc(0, 0, 318, 318, 0, 322, PIE);
       pop();
     }
   }
@@ -210,10 +219,10 @@ class Rad {
   loadColors() {
     colors = [];
     var rainbowColors = [
-      createVector(0, 0, 0).set(color('red').levels),
-      createVector(0, 0, 0).set(color('green').levels),
-      createVector(0, 0, 0).set(color('yellow').levels),
-      createVector(0, 0, 0).set(color('blue').levels)
+      createVector('#231f20').set(color('#00a14b').levels),
+      createVector('#231f20').set(color('#f6eb16').levels),
+      createVector('#231f20').set(color('#ed2224').levels),
+      createVector('#231f20').set(color('#2a2d7c').levels)
     ];
     
     for (var i = 0; i < total; i++) {
@@ -342,7 +351,7 @@ class Menu {
             textSize(18);
             fill(0);
             noStroke();
-            text('De handleding is te besturen met ← en → op je toetsenboord.', 150, 22)
+            text('De handleding is te besturen met ← en → op je toetsenbord.', 150, 22)
             image(Handleiding[Himage], 127.035, 29.765, 545.9344, 390.47);
             bcreated = false;
             break;
