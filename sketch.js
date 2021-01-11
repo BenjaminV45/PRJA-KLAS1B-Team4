@@ -403,7 +403,7 @@ class Menu {
     this.blockStyle(block1,leftSide,133)
     var icon1 = createDiv('');
     this.iconStyle(icon1,block1, '1')
-    var text1 = createDiv("Wanneer je op deze knop klinkt zul je verwezen worden naar de minigame omgeving. Hier kun je met het klikken van 'Strat!' het rad draaien. In de handleiding kunt u hier meer uitleg over krijgen.");
+    var text1 = createDiv("Wanneer je op deze knop klinkt zul je verwezen worden naar de minigame omgeving. Hier kun je met het klikken van 'START!' het rad draaien. In de handleiding kunt u hier meer uitleg over krijgen.");
     this.textStyle(text1,block1)
 
     var block2 = createDiv('');
