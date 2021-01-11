@@ -296,9 +296,7 @@ class Menu {
         {
           this.removeCounter();
           this.removeContainer();
-          textSize(32);
           this.lijn();
-          text('oof2', 10, 30);
            rad = new Rad();
           if (!radcreated) {
             rad.drawButton();
@@ -340,6 +338,10 @@ class Menu {
             this.removeCounter();
             this.removeContainer();
             this.removeRad();
+            textSize(18);
+            fill(0);
+            noStroke();
+            text('De handleding is te besturen met ← en → op je toetsenboord.', 150, 22)
             image(Handleiding[Himage], 127.035, 29.765, 545.9344, 390.47);
             bcreated = false;
             break;
@@ -394,28 +396,28 @@ class Menu {
     this.blockStyle(block,leftSide,30)
     var icon = createDiv('');
     this.iconStyle(icon,block, '')
-    var text = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    var text = createDiv("Wanneer je op deze knop klint zul je verwezen worden naar de gooiworp kaarten. Deze worden met het klikken op de 'Volgende ronde!' button veranderd. Ook worden de rondes hier bijhehouden.");
     this.textStyle(text,block)
 
     var block1 = createDiv('');
     this.blockStyle(block1,leftSide,133)
     var icon1 = createDiv('');
     this.iconStyle(icon1,block1, '1')
-    var text1 = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    var text1 = createDiv("Wanneer je op deze knop klinkt zul je verwezen worden naar de minigame omgeving. Hier kun je met het klikken van 'Strat!' het rad draaien. In de handleiding kunt u hier meer uitleg over krijgen.");
     this.textStyle(text1,block1)
 
     var block2 = createDiv('');
     this.blockStyle(block2,leftSide,236)
     var icon2 = createDiv('');
     this.iconStyle(icon2,block2, '2')
-    var text2 = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    var text2 = createDiv('Met deze knop kun je terug gaan naar het onderdeel waar je vandaan kwam.');
     this.textStyle(text2,block2)
 
     var block3 = createDiv('');
     this.blockStyle(block3,leftSide,339)
     var icon3 = createDiv('');
     this.iconStyle(icon3,block3, '3')
-    var text3 = createDiv('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat, tellus quis iaculis dictum, mi odio feugiat nisi, vel pretium elit quam sit amet risus. Quisque ac odio eu augue imperdiet varius. ');
+    var text3 = createDiv('Wanneer je op deze knop klinkt zul je verwezen worden naar de uitleg van het spel. Hier wordt alles concreet uitgelegd zodat het spel optimaal gespeeld kan worden.');
     this.textStyle(text3,block3)
 
     
