@@ -146,18 +146,19 @@ class Rad {
 
   drawCircle() {
     circle(0, 0, 322, 322);
-    strokeWeight(1);
-    stroke(20);
+    strokeWeight(3);
+    stroke('#231f20');
     rotate(current);
   }
 
   drawSpinner() {
-    fill(255);
+    fill('#231f20');
     push();
-    strokeWeight(1);
-    stroke(20);
+    strokeWeight(3);
+    stroke('#231f20');
     translate(0, -204);
     rotate(2.35);
+    fill(255)
     triangle(15, 15, 30, -30, -15, -15);
     pop();
   }
@@ -182,7 +183,7 @@ class Rad {
         c.setAlpha(190);
         sw = 6;
         astroke = 4;
-        strokeCol = color(0, 0, 0, 0);
+        strokeCol = color('#231f20');
       }
       push();
       rotate(-QUARTER_PI);
@@ -195,7 +196,7 @@ class Rad {
       rotate(HALF_PI);
       stroke(0);
       strokeWeight(sw);
-      fill(255);
+      fill('#231f20');
       pop();
       
       fill(c);
